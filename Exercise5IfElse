@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class BaiTap5IfElse {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        char choice;
+        do {
+            System.out.println("");
+            System.out.println("Xin hỏi ai đang sử dụng máy:");
+            System.out.println("B. Bố");
+            System.out.println("H. Mẹ");
+            System.out.println("A. Anh trai");
+            System.out.println("E. Em gái");
+            System.out.println("T. Thoát chương trình");
+            choice = input.next().charAt(0);
+            switch (choice){
+                case 'B':
+                case 'b':
+                    System.out.println("Xin chào bố");
+                    break;
+                case 'H':
+                case 'h':
+                    System.out.println("Xin chào mẹ");
+                    break;
+                case 'A':
+                case 'a':
+                    System.out.println("Xin chào anh trai");
+                    break;
+                case 'E':
+                case 'e':
+                    System.out.println("Xin chào em gái");
+                    break;
+                case 'T':
+                case 't':
+                    System.out.println("Xin chào và hẹn gặp lại");
+                    break;
+                default:
+                    System.out.println("Vui lòng nhập lựa chọn phù hợp");
+                    break;
+            }
+        } while (choice != 'T' && choice != 't');
+    }
+}
