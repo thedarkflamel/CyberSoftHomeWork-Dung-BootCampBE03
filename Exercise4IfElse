@@ -1,0 +1,110 @@
+import java.util.Scanner;
+
+public class BaiTap4IfElse {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter an integer number with 2 digits:");
+        int a = input.nextInt();
+        if (a < 0 || a >= 100){
+            System.out.println("Please input suitable number");
+        } else if (a >= 0 && a < 10) {
+            switch (a){
+                case 0:
+                    System.out.println("Không");
+                    break;
+                case 1:
+                    System.out.println("Một");
+                    break;
+                case 2:
+                    System.out.println("Hai");
+                    break;
+                case 3:
+                    System.out.printf("Ba");
+                    break;
+                case 4:
+                    System.out.println("Bốn");
+                    break;
+                case 5:
+                    System.out.println("Năm");
+                    break;
+                case 6:
+                    System.out.println("Sáu");
+                    break;
+                case 7:
+                    System.out.println("Bảy");
+                    break;
+                case 8:
+                    System.out.println("Tám");
+                    break;
+                case 9:
+                    System.out.println("Chín");
+                    break;
+            }
+        } else {
+            int soDonVi = a % 10;
+            int soHangChuc = a / 10;
+            switch (soHangChuc){
+                case 1:
+                    System.out.print("Mười");
+                    break;
+                case 2:
+                    System.out.print("Hai mươi");
+                    break;
+                case 3:
+                    System.out.print("Ba mươi");
+                    break;
+                case 4:
+                    System.out.print("Bốn mươi");
+                    break;
+                case 5:
+                    System.out.print("Năm mươi");
+                    break;
+                case 6:
+                    System.out.print("Sáu mươi");
+                    break;
+                case 7:
+                    System.out.print("Bảy mươi");
+                    break;
+                case 8:
+                    System.out.print("Tám mươi");
+                    break;
+                case 9:
+                    System.out.print("Chín mươi");
+                    break;
+            }
+            switch (soDonVi){
+                case 1:
+                    if(soHangChuc == 1){
+                        System.out.println(" một");
+                    } else {
+                        System.out.println(" mốt");
+                    }
+                    break;
+                case 2:
+                    System.out.println(" hai");
+                    break;
+                case 3:
+                    System.out.println(" ba");
+                    break;
+                case 4:
+                    System.out.println(" bốn");
+                    break;
+                case 5:
+                    System.out.println(" lăm");
+                    break;
+                case 6:
+                    System.out.println(" sáu");
+                    break;
+                case 7:
+                    System.out.println(" bảy");
+                    break;
+                case 8:
+                    System.out.println(" tám");
+                    break;
+                case 9:
+                    System.out.println(" chín");
+                    break;
+            }
+        }
+    }
+}
