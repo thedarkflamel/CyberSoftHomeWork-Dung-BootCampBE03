@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class BaiTap2IfElse {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào số nguyên a:");
+        int a = input.nextInt();
+        System.out.println("Nhập vào số nguyên b:");
+        int b = input.nextInt();
+        System.out.println("Nhập vào số nguyên c:");
+        int c = input.nextInt();
+        int max = a;
+        max = (a > b) ? a : b;
+        max = (max > c) ? max : c;
+        int min = a;
+        min = (a < b) ? a : b;
+        min = (min < c) ? min : c;
+        int midValue = (a + b + c) - max - min;
+        System.out.println("Thứ tự sắp xếp tăng dần là");
+        System.out.printf(min + " " + midValue + " " + max);
+    }
+}
