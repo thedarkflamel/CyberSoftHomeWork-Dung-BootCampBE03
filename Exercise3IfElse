@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class BaiTap3IfElse {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input integer number a:");
+        int a = input.nextInt();
+        System.out.println("Input integer number b:");
+        int b = input.nextInt();
+        System.out.println("Input integer number c:");
+        int c = input.nextInt();
+        int max = a;
+        max = (a > b) ? a : b;
+        max = (max > c) ? max : c;
+        int min = a;
+        min = (a < b) ? a : b;
+        min = (min < c) ? min : c;
+        int midValue = (a + b + c) - max - min;
+        System.out.println("Enter your choice here:");
+        System.out.println("1: Ascending sorting");
+        System.out.println("2: Descending sorting ");
+        int choice = input.nextInt();
+        switch (choice){
+            case 1:
+                System.out.println("Result: " + min + " " + midValue + " " + max);
+                break;
+            case 2:
+                System.out.println("Result: " + max + " " + midValue + " " + min);
+                break;
+            default:
+                System.out.println("Please enter 1 or 2");
+                break;
+        }
+
+
+    }
+}
