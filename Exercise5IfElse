@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class BaiTap5IfElse {
     public static void main(String[] args) {
+        //Input: Tạo 1 vòng lặp do while để user nhập tên người sử dụng máy
+        //Process: Dựa theo lựa chọn của người dùng từ đó ghi nhận người sử dụng máy là ai
+        //Output: Dựa theo người sử dụng thực tế -> in ra kq chính xác
         Scanner input = new Scanner(System.in);
         char choice;
         do {
