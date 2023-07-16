@@ -3,12 +3,16 @@ import java.util.Scanner;
 public class BaiTap3IfElse {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        //Input: Nhập 3 số a, b, c là số nguyên
         System.out.println("Input integer number a:");
         int a = input.nextInt();
         System.out.println("Input integer number b:");
         int b = input.nextInt();
         System.out.println("Input integer number c:");
         int c = input.nextInt();
+        //Process: Tương tự như bài tập 2 -> tìm giá trị lớn nhất, nhỏ nhất và số ở giữa
+        //Sử dụng switch case để tách các trường hợp người dùng lựa chọn cách sắp xếp
+        //Output: in kq ra màn hình
         int max = a;
         max = (a > b) ? a : b;
         max = (max > c) ? max : c;
@@ -31,7 +35,5 @@ public class BaiTap3IfElse {
                 System.out.println("Please enter 1 or 2");
                 break;
         }
-
-
     }
 }
