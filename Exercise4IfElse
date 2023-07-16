@@ -2,12 +2,19 @@ import java.util.Scanner;
 
 public class BaiTap4IfElse {
     public static void main(String[] args) {
+        //input: Nhập đầu vào là số nguyên có 2 chữ số
         Scanner input = new Scanner(System.in);
         System.out.println("Enter an integer number with 2 digits:");
         int a = input.nextInt();
-        if (a < 0 || a >= 100){
+        //Process: Lập danh sách các trường hợp xuất hiện của hàng chục + đơn vị
+        //Dựa vào switch case để tách từng trường hợp cần ghi giá trị cho gọn
+        //Output: in kết quả ra màn hình
+        if(a < 0 && a >= -100){
+            System.out.print("Âm ");
+        }
+        if (Math.abs(a) >= 100){
             System.out.println("Please input suitable number");
-        } else if (a >= 0 && a < 10) {
+        } else if (Math.abs(a) >= 0 && Math.abs(a) < 10){
             switch (a){
                 case 0:
                     System.out.println("Không");
@@ -41,8 +48,8 @@ public class BaiTap4IfElse {
                     break;
             }
         } else {
-            int soDonVi = a % 10;
-            int soHangChuc = a / 10;
+            int soDonVi = Math.abs(a) % 10;
+            int soHangChuc = Math.abs(a) / 10;
             switch (soHangChuc){
                 case 1:
                     System.out.print("Mười");
