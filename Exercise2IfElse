@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class BaiTap2IfElse {
     public static void main(String[] args) {
+        //input: nhập đầu vào gồm 3 số nguyên a, b và c
         Scanner input = new Scanner(System.in);
         System.out.println("Nhập vào số nguyên a:");
         int a = input.nextInt();
@@ -9,6 +10,8 @@ public class BaiTap2IfElse {
         int b = input.nextInt();
         System.out.println("Nhập vào số nguyên c:");
         int c = input.nextInt();
+        //Process: Tìm giá trị lớn nhất và nhỏ nhất bằng cách tạo biến và lần lượt so sánh với các giá trị.
+        //Giá trị còn lại là giá trị ở khoảng giữa -> so sánh được theo thứ tự
         int max = a;
         max = (a > b) ? a : b;
         max = (max > c) ? max : c;
@@ -16,6 +19,7 @@ public class BaiTap2IfElse {
         min = (a < b) ? a : b;
         min = (min < c) ? min : c;
         int midValue = (a + b + c) - max - min;
+        //Output: in kết quả ra màn hình
         System.out.println("Thứ tự sắp xếp tăng dần là");
         System.out.printf(min + " " + midValue + " " + max);
     }
