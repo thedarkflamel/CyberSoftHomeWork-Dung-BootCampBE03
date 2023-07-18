@@ -30,7 +30,7 @@ public class BaiTap4Buoi6 {
                     if(b == 0){
                         System.out.println("Lỗi chia cho 0");
                     } else {
-                        float div = (float)(a / b);
+                        float div = (float)(a) / b;
                         System.out.println("a / b = " + div );
                     }
                     break;
