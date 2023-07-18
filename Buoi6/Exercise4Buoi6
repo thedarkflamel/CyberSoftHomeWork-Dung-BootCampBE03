@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class BaiTap4Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào số nguyên a:");
+        int a = input.nextInt();
+        System.out.println("Nhập vào số nguyên b:");
+        int b = input.nextInt();
+        int choice;
+        do {
+            System.out.println("Nhập lựa chọn của bạn vào đây:");
+            System.out.println("1. Cộng");
+            System.out.println("2. Trừ");
+            System.out.println("3. Nhân");
+            System.out.println("4. Chia");
+            System.out.println("0. Thoát");
+            choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    System.out.println("a + b = " + (a + b));
+                    break;
+                case 2:
+                    System.out.println("a - b = " + (a - b));
+                    break;
+                case 3:
+                    System.out.println("a * b = " + (a * b));
+                    break;
+                case 4:
+                    if(b == 0){
+                        System.out.println("Lỗi chia cho 0");
+                    } else {
+                        float div = (float)(a / b);
+                        System.out.println("a / b = " + div );
+                    }
+                    break;
+                case 0:
+                    System.out.println("Thoát chương trình");
+                    break;
+                default:
+                    System.out.println("Vui lòng nhập từ 0 - 5");
+                    break;
+            }
+        } while (choice != 0);
+    }
+}
