@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class BaiTap5Buoi5 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String choice;
+        do {
+            System.out.println("Nhập vào tên các con vật: Chó, Mèo, Chuột, Ngựa");
+            System.out.println("Nhập Thoát để thoát chương trình");
+            choice = input.nextLine();
+            switch (choice){
+                case "Chó":
+                    System.out.println("Chó sủa gâu gâu");
+                    break;
+                case "Mèo":
+                    System.out.println("Mèo kêu meo meo");
+                    break;
+                case "Chuột":
+                    System.out.println("Chuột kêu chít chít");
+                    break;
+                case "Ngựa":
+                    System.out.println("Ngựa kêu hí hí");
+                    break;
+                case "Thoát":
+                    System.out.println("Chương trình kết thúc");
+                    break;
+                default:
+                    System.out.println("Vui lòng nhập lựa chọn phù hợp");
+                    break;
+            }
+        } while (choice.compareTo("Thoát") != 0);
+    }
+}
