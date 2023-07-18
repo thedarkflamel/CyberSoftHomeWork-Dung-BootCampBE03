@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class BaiTap6Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào số nguyên a:");
+        int a = input.nextInt();
+        System.out.println("Nhập vào số nguyên b:");
+        int b = input.nextInt();
+        System.out.println("Nhập vào số nguyên c:");
+        int c = input.nextInt();
+        int countOddNumb = 0;
+        int countEvenNumb = 0;
+        if(a % 2 == 0){
+            countEvenNumb++;
+        } else {
+            countOddNumb++;
+        }
+        if(b % 2 == 0){
+            countEvenNumb++;
+        } else {
+            countOddNumb++;
+        }
+        if(c % 2 == 0){
+            countEvenNumb++;
+        } else {
+            countOddNumb++;
+        }
+        System.out.println("Tổng cộng có " + countEvenNumb + " số chẵn" + ", " + countOddNumb + " số lẻ");
+    }
+}
