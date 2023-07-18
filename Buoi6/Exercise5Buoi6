@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class BaiTap5Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập tên của sinh viên thứ nhất:");
+        String fullName1 = input.nextLine();
+        System.out.println("Nhập năm sinh của sinh viên thứ nhất:");
+        int year1 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập tên của sinh viên thứ hai:");
+        String fullName2 = input.nextLine();
+        System.out.println("Nhập năm sinh của sinh viên thứ hai:");
+        int year2 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập tên của sinh viên thứ ba:");
+        String fullName3 = input.nextLine();
+        System.out.println("Nhập năm sinh của sinh viên thứ ba:");
+        int year3 = input.nextInt();
+        int max = year1;
+        max = (year1 > year2) ? year1 : year2;
+        max = (max > year3) ? max : year3;
+        if(max == year1){
+            System.out.println(fullName1 + " sinh năm " + year1 + " nhỏ tuổi nhất");
+        } else if (max == year2) {
+            System.out.println(fullName2 + " sinh năm " + year2 + " nhỏ tuổi nhất");
+        } else {
+            System.out.println(fullName3 + " sinh năm " + year3 + " nhỏ tuổi nhất");
+        }
+    }
+}
