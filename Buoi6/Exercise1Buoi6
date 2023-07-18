@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class BaiTap1Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào số a:");
+        float a = input.nextFloat();
+        System.out.println("Nhập vào số b:");
+        float b = input.nextFloat();
+        System.out.println("Nhập vào số c:");
+        float c = input.nextFloat();
+        float max = a;
+        max = (a > b) ? a : b;
+        max = (max > c) ? max : c;
+        System.out.println("Số lớn nhất trong 3 số là " + max);
+    }
+}
