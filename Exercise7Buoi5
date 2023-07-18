@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class BaiTap7Buoi5 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập a:");
+        float a = input.nextFloat();
+        System.out.println("Nhập b:");
+        float b = input.nextFloat();
+        if (a == 0){
+            System.out.println("Phương trình vô nghiệm");
+        } else {
+            if((-b / a) < 0){
+                System.out.println("Phương trình vô nghiệm");
+            } else {
+                System.out.println("Phương trình có 1 nghiệm duy nhất " +
+                        Math.sqrt(-b / a));
+            }
+        }
+    }
+}
