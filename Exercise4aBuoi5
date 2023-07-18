@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class BaiTap4aBuoi5 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào số nguyên a");
+        int a  = input.nextInt();
+        System.out.println("Nhập vào số nguyên b");
+        int b  = input.nextInt();
+        System.out.println("Nhập vào số nguyên c");
+        int c  = input.nextInt();
+        System.out.println("Nhập vào số nguyên d");
+        int d  = input.nextInt();
+        System.out.println("Tổng của 4 số nguyên a, b, c và d là: " + (a + b + c + d));
+        System.out.println("Hiệu của 4 số nguyên a, b, c và d là: " + (a - b - c - d));
+        System.out.println("Tích của 2 số nguyên a và b là " + (a * b));
+        System.out.println("Tích của 2 số nguyên c và d là " + (c * d));
+        System.out.println("Kết quả của a - b + c + d là " + (a - b + c + d));
+    }
+}
