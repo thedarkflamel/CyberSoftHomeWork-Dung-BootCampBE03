@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class BaiTap8Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập tên sinh viên thứ nhất:");
+        String fullName1 = input.nextLine();
+        System.out.println("Nhập tọa độ x của sv thứ nhất:");
+        int x1 = input.nextInt();
+        System.out.println("Nhập tọa độ y của sv thứ nhất:");
+        int y1 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập tên sinh viên thứ hai:");
+        String fullName2 = input.nextLine();
+        System.out.println("Nhập tọa độ x của sv thứ hai:");
+        int x2 = input.nextInt();
+        System.out.println("Nhập tọa độ y của sv thứ hai:");
+        int y2 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập tên sinh viên thứ ba:");
+        String fullName3 = input.nextLine();
+        System.out.println("Nhập tọa độ x của sv thứ ba:");
+        int x3 = input.nextInt();
+        System.out.println("Nhập tọa độ y của sv thứ ba:");
+        int y3 = input.nextInt();
+        System.out.println("Nhập tọa độ x của trường đại học:");
+        int xDH = input.nextInt();
+        System.out.println("Nhập tọa độ y của trường đại học:");
+        int yDH = input.nextInt();
+        double k1 = Math.sqrt(Math.pow(xDH - x1, 2) + Math.pow(yDH - y1, 2));
+        double k2 = Math.sqrt(Math.pow(xDH - x2, 2) + Math.pow(yDH - y2, 2));
+        double k3 = Math.sqrt(Math.pow(xDH - x3, 2) + Math.pow(yDH - y3, 2));
+        double max = k1;
+        max = (k1 > k2) ? k1 : k2;
+        max = (max > k3) ? max : k3;
+        if(max == k1){
+            System.out.println(fullName1 + " ở xa trường đại học nhất");
+        } else if (max == k2) {
+            System.out.println(fullName2 + " ở xa trường đại học nhất");
+        } else {
+            System.out.println(fullName3 + " ở xa trường đại học nhất");
+        }
+    }
+}
