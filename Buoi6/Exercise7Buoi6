@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class BaiTap7Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập tên của sinh viên thứ nhất:");
+        String fullName1 = input.nextLine();
+        System.out.println("Nhập năm sinh của sinh viên thứ nhất:");
+        int year1 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập giới tính của sinh viên thứ nhất");
+        String gender1 = input.nextLine();
+        System.out.println("Nhập tên của sinh viên thứ hai:");
+        String fullName2 = input.nextLine();
+        System.out.println("Nhập năm sinh của sinh viên thứ hai:");
+        int year2 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập giới tính của sinh viên thứ hai");
+        String gender2 = input.nextLine();
+        System.out.println("Nhập tên của sinh viên thứ ba:");
+        String fullName3 = input.nextLine();
+        System.out.println("Nhập năm sinh của sinh viên thứ ba:");
+        int year3 = input.nextInt();
+        input.nextLine();
+        System.out.println("Nhập giới tính của sinh viên thứ ba:");
+        String gender3 = input.nextLine();
+        String fullNameResult = fullName1;
+        String genderResult = gender1;
+        int yearResult = year1;
+        if(gender2.equals("nam")){
+            if(genderResult.compareToIgnoreCase("nam") != 0){
+                fullNameResult = fullName2;
+                genderResult = gender2;
+                yearResult = year2;
+            } else if(year2 > yearResult){
+                fullNameResult = fullName2;
+                genderResult = gender2;
+                yearResult = year2;
+            }
+        }
+
+        if(gender3.compareToIgnoreCase("nam") == 0){
+            if(genderResult.compareToIgnoreCase("nam") != 0){
+                fullNameResult = fullName3;
+                genderResult = gender3;
+                yearResult = year3;
+            } else if(year3 > yearResult){
+                fullNameResult = fullName3;
+                genderResult = gender3;
+                yearResult = year3;
+            }
+        }
+        if(genderResult.compareToIgnoreCase("nam") == 0){
+            System.out.println(fullNameResult + " sinh năm " + yearResult + " là nhân viên " + genderResult + " có số tuổi nhỏ nhất!");
+        } else {
+            System.out.println("Không có cán bộ nam");
+        }
+    }
+}
