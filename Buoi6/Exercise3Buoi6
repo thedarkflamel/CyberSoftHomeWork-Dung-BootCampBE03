@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class BaiTap3Buoi6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào số a:");
+        float a = input.nextFloat();
+        System.out.println("Nhập vào số b:");
+        float b = input.nextFloat();
+        System.out.println("Nhập vào số c:");
+        float c = input.nextFloat();
+        System.out.println("Tổng 3 số a, b và c là: " + (a + b + c));
+    }
+}
