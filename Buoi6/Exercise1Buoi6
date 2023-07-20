@@ -9,9 +9,14 @@ public class BaiTap1Buoi6 {
         float b = input.nextFloat();
         System.out.println("Nhập vào số c:");
         float c = input.nextFloat();
+        float max = findMax(a, b, c);
+        System.out.println("Số lớn nhất trong 3 số là " + max);
+
+    }
+    public static float findMax ( float a, float b, float c){
         float max = a;
         max = (a > b) ? a : b;
         max = (max > c) ? max : c;
-        System.out.println("Số lớn nhất trong 3 số là " + max);
+        return max;
     }
 }
