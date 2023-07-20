@@ -9,6 +9,11 @@ public class BaiTap3Buoi6 {
         float b = input.nextFloat();
         System.out.println("Nhập vào số c:");
         float c = input.nextFloat();
-        System.out.println("Tổng 3 số a, b và c là: " + (a + b + c));
+        float total = sum(a, b, c);
+        System.out.println("Tổng 3 số a, b, c là: " + total);
+    }
+
+    public static float sum(float a, float b, float c){
+        return a + b + c;
     }
 }
