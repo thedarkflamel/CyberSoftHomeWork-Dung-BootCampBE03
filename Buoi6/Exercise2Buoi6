@@ -5,10 +5,18 @@ public class BaiTap2Buoi6 {
         Scanner input = new Scanner(System.in);
         System.out.println("Nhập vào số nguyên a:");
         int a = input.nextInt();
-        if(a % 2 == 0){
+        if (isEven(a)) {
             System.out.println(a + " là số chẵn");
         } else {
             System.out.println(a + " là số lẻ");
+        }
+    }
+
+    public static boolean isEven(int a) {
+        if (a % 2 == 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
