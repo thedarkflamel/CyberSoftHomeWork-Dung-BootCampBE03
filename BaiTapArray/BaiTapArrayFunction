@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BaiTap1 {
+public class ExerciseArray {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Nhập số phần tử của mảng:");
@@ -31,7 +31,7 @@ public class BaiTap1 {
                         break;
                     case 2:
                         int sumOdd = sumOddNumb(arr);
-                        System.out.println("Tổng các số lẻ trong mảng là" + sumOdd);
+                        System.out.println("Tổng các số lẻ trong mảng là " + sumOdd);
                         break;
                     case 3:
                         int count = countPositiveNumb(arr);
@@ -47,7 +47,7 @@ public class BaiTap1 {
                         break;
                     case 6:
                         int lastEven = findLastEven(arr);
-                        if (lastEven % 2 == 1) {
+                        if (lastEven % 2 != 0) {
                             System.out.println("Mảng không có số chẵn");
                         } else {
                             System.out.println("Số chẵn cuối cùng trong mảng là: " + lastEven);
@@ -55,7 +55,7 @@ public class BaiTap1 {
                         break;
                     case 7:
                         int firstEven = findFirstEven(arr);
-                        if(firstEven < 0){
+                        if (firstEven < 0) {
                             System.out.println("Mảng không có số chẵn");
                         } else {
                             System.out.println("Số chẵn đầu tiên trong mảng là: " + firstEven);
@@ -63,7 +63,7 @@ public class BaiTap1 {
                         break;
                     case 8:
                         int firstPrime = findFirstPrime(arr);
-                        if(firstPrime < 0){
+                        if (firstPrime < 0) {
                             System.out.println("Mảng không có số nguyên tố");
                         } else {
                             System.out.println("So nguyên tố đầu tiên trong mảng là: " + firstPrime);
@@ -71,18 +71,18 @@ public class BaiTap1 {
                         break;
                     case 9:
                         int lastPos = findLastPositive(arr);
-                        if(lastPos < 0){
+                        if (lastPos < 0) {
                             System.out.println("Mảng không có số dương");
                         } else {
-                            System.out.println("So dương cuối cùng của mảng là: " + lastPos);
+                            System.out.println("Số dương cuối cùng của mảng là: " + lastPos);
                         }
                         break;
                     case 10:
                         int minEven = findMinEven(arr);
-                        if(minEven % 2 == 1){
+                        if (minEven % 2 != 0) {
                             System.out.println("Array does not include even number");
                         } else {
-                            System.out.println("The least even number in array is "  + minEven);
+                            System.out.println("The least even number in array is " + minEven);
                         }
                         break;
                     case 0:
@@ -119,7 +119,7 @@ public class BaiTap1 {
     public static int sumOddNumb(int[] arr) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] % 2 == 1) {
+            if (arr[i] % 2 != 0) {
                 sum += arr[i];
             }
         }
@@ -146,7 +146,7 @@ public class BaiTap1 {
 
     public static int minPositiveValue(int[] arr) {
         int min = 0;
-        for (int i = 0; i  < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] > 0) {
                 min = arr[i];
                 break;
@@ -180,46 +180,44 @@ public class BaiTap1 {
         return -1;
     }
 
-    public static int findFirstPrime(int[] arr){
+    public static int findFirstPrime(int[] arr) {
         int count = 0;
-        for (int i = 0; i < arr.length; i++){
-            if(arr[i] <= 2){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] <= 2) {
                 continue;
             } else {
-                for (int j = 2; j < Math.sqrt(arr[i]); j++){
-                    if (arr[i] % j == 0){
+                for (int j = 2; j < Math.sqrt(arr[i]); j++) {
+                    if (arr[i] % j == 0) {
                         count++;
                     }
                 }
             }
-            if(count == 0){
+            if (count == 0) {
                 return arr[i];
             }
         }
         return -1;
     }
 
-    public static int findLastPositive(int[] arr){
-        for (int i = arr.length - 1; i >= 0; i--){
-            if(arr[i] > 0){
+    public static int findLastPositive(int[] arr) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] > 0) {
                 return arr[i];
             }
         }
         return -1;
     }
 
-    public static int findMinEven(int[] arr){
-        int min = Integer.MIN_VALUE;
-        for (int i = 0; i < arr.length; i++){
-            if(arr[i] % 2 == 0){
+    public static int findMinEven(int[] arr) {
+        int min = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
                 min = arr[i];
                 break;
-            } else {
-                return -1;
             }
         }
-        for (int i = 0; i < arr.length; i++){
-            if (arr[i] % 2 ==0){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
                 min = (min < arr[i]) ? min : arr[i];
             }
         }
