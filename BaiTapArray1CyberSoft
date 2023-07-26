@@ -1,0 +1,156 @@
+import java.util.Scanner;
+
+public class BaiTap {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập số phần tử của mảng:");
+        int n = input.nextInt();
+        if (n < 0) {
+            System.out.println("Tạo mảng lỗi");
+        } else {
+            int[] arr = fillArr(n, input);
+            showInfo(arr);
+            int max = findMaxElements(arr);
+            int index = findIndexMaxElements(arr, max);
+            System.out.println("Số lớn nhất trong mảng là " + max + "\nTại vị trí: " + index);
+
+            int firstNegative = findFirstNegativeNumb(arr);
+            int index2 = findIndexFirstNegativeNumb(arr);
+            if(index2 < 0){
+                System.out.println("Mảng không có số âm");
+            } else {
+                System.out.println("Số âm đầu tiên trong mảng là " + firstNegative + "\n Tại vị trí " + index2);
+            }
+
+            if(index2 < 0){
+                System.out.println("Mảng không có số âm");
+            } else {
+                int maxNegative = findMaxNegativeNumb(arr, firstNegative);
+                int index3 = findIndexMaxElements(arr, maxNegative);
+                System.out.println("Số âm lớn nhất trong mảng là " + maxNegative + "\n Tại vị trí " + index3);
+            }
+
+            int sumEven = sumEven(arr);
+            System.out.println("Tổng các so chẵn là: " +  sumEven);
+
+            int countNegative = countNegative(arr);
+            System.out.println("Tổng cộng có " + countNegative + " số âm");
+
+            int sumNegative = sumNegative(arr);
+            System.out.println("Tổng các so am là " + sumNegative);
+
+            System.out.println("Nhập x:");
+            int x = input.nextInt();
+            if(findX(arr, x)){
+                System.out.println(x +  " có trong mảng");
+            } else {
+                System.out.println(x + " không có trong mảng");
+            }
+        }
+
+    }
+
+    //Hàm nhập
+    public static int[] fillArr(int n, Scanner input) {
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Nhập vào phần tử thứ " + (i + 1) + " của mảng");
+            arr[i] = input.nextInt();
+        }
+        return arr;
+    }
+
+    //Hàm xuất
+    public static void showInfo(int[] arr) {
+        for (int items : arr) {
+            System.out.println(items);
+        }
+    }
+
+    //Tìm số lớn nhất và vị trí của nó trong mảng
+    public static int findMaxElements(int[] arr) {
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            max = (max > arr[i]) ? max : arr[i];
+        }
+        return max;
+    }
+
+    public static int findIndexMaxElements(int[] arr, int max) {
+        for (int i = 0; i < arr.length; i++){
+            if (max == arr[i]){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Tìm số âm đầu tiên và vị trí của nó trong mảng
+    public static int findFirstNegativeNumb(int[] arr){
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] < 0){
+                return arr[i];
+            }
+        }
+        return 1;
+    }
+
+    public static int findIndexFirstNegativeNumb(int[] arr){
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] < 0){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //Tìm số âm lớn nhất và vị trí của nó trong mảng
+    public static int findMaxNegativeNumb(int[]arr, int firstNegative){
+        int max = firstNegative;
+        for(int i = 0; i < arr.length; i++){
+            max = (max > arr[i] && max < 0) ? max : arr[i];
+        }
+        return max;
+    }
+
+    //Tính tổng các số chẵn
+    public static int sumEven(int[] arr){
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i] % 2 == 0){
+                sum += arr[i];
+            }
+        }
+        return sum;
+    }
+
+    //Đếm có bao nhiêu số âm
+    public static int countNegative(int[]arr){
+        int count = 0;
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i] < 0){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int sumNegative(int[] arr){
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++){
+            if(arr[i] < 0){
+                sum += arr[i];
+            }
+        }
+        return sum;
+    }
+
+    public static boolean findX(int[] arr, int x){
+        for (int i = 0; i < arr.length; i++){
+            if (x == arr[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+}
