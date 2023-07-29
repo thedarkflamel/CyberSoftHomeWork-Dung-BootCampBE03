@@ -1,0 +1,12 @@
+public class TestSinhVien {
+    public static void main(String[] args) {
+        SinhVien sinhVienA = new SinhVien();
+        sinhVienA.setFullName("Dũng");
+        sinhVienA.setStudentCode("MSSV001");
+        sinhVienA.setMathScore(8.2f);
+        sinhVienA.setPhysicScore(6.3f);
+        sinhVienA.setChemistryScore(9.0f);
+        sinhVienA.calculateAverageScore();
+        sinhVienA.rankByAverageScore();
+    }
+}
