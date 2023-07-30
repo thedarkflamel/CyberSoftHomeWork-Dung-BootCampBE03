@@ -1,0 +1,197 @@
+import java.util.Scanner;
+
+public class TestSinhVien2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input the number of student in the class:");
+        int n = input.nextInt();
+        if(n > 0){
+            SinhVien2[] students = new SinhVien2[n];
+            int choice;
+            do {
+                System.out.println("Student management program");
+                System.out.println("0. Exit program");
+                System.out.println("1. Enter student info");
+                System.out.println("2. Calculate average score");
+                System.out.println("3. Ranking students");
+                System.out.println("4. Show student whose highest average score");
+                System.out.println("5. Show students whose poor rank");
+                System.out.println("6. Find students by name");
+                System.out.println("7. Find students by student code");
+                System.out.println("8. Remove students by student code");
+                choice = input.nextInt();
+                switch (choice){
+                    case 1:
+                        fillInfo(students, input);
+                        break;
+                    case 2:
+                        for(int i = 0; i < students.length; i++){
+                            students[i].calculateAverageScore();
+                            System.out.println("Average score of student No. " + (i + 1) + " : "  + students[i].getAverageScore());
+                        }
+                        break;
+                    case 3:
+                        int count = 0;
+                        for(int i = 0; i < students.length; i++){
+                            if(students[i].getAverageScore() == 0) {
+                                System.out.println("Please press 2 to calculate average score first");
+                                count++;
+                                break;
+                            } else {
+                                students[i].rankByAverageScore();
+                            }
+                        }
+                        if(count == 0){
+                            showInfo(students);
+                        }
+                        break;
+                    case 4:
+                        float max = findHighestScoreStudent(students);
+                        for (int i = 0; i < students.length; i++){
+                            if(max == students[i].getAverageScore()){
+                                System.out.printf("%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Full Name", "ID code",
+                                        "Math Score", "Physic Score", "Chemistry Score", "Average Score", "Rank");
+                                System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
+                                        students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
+                                        students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
+                            }
+                        }
+                        break;
+                    case 5:
+                        findPoorRank(students);
+                        break;
+                    case 6:
+                        String name;
+                        System.out.println("Enter student's name you wanna search:");
+                        input.nextLine();
+                        name = input.nextLine();
+                        findStudentByName(students, name);
+                        break;
+                    case 7:
+                        String code;
+                        System.out.println("Enter student's code you wanna search:");
+                        input.nextLine();
+                        code = input.nextLine();
+                        findStudentByCode(students, code);
+                        break;
+                    case 8:
+                        String codeRemove;
+                        System.out.println("Enter student's code you wanna remove:");
+                        input.nextLine();
+                        codeRemove = input.nextLine();
+                        removeStudentInfo(students, codeRemove, n);
+                        break;
+                }
+            } while (choice != 0);
+        } else {
+            System.out.println("Class empty");
+        }
+    }
+
+    public static void  fillInfo(SinhVien2[] students, Scanner input){
+        for(int i = 0; i < students.length; i++){
+            SinhVien2 student = new SinhVien2();
+            System.out.println("Input info of student No. " + (i + 1) + ":");
+            System.out.println("Enter full name:");
+            input.nextLine();
+            student.setFullName(input.nextLine());
+            System.out.println("Enter student code:");
+            student.setStudentCode(input.nextLine());
+            System.out.println("Enter math score:");
+            student.setMathScore(input.nextFloat());
+            System.out.println("Enter Physic score:");
+            student.setPhysicScore(input.nextFloat());
+            System.out.println("Enter Chemistry score:");
+            student.setChemistryScore(input.nextFloat());
+            students[i] = student;
+        }
+    }
+
+    public static void showInfo(SinhVien2[] students){
+        printLabel();
+        for (int i = 0; i < students.length; i++){
+            System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
+                    students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
+                    students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
+        }
+    }
+
+    public static float findHighestScoreStudent(SinhVien2[] students){
+        float max = 0;
+        for (int i = 0; i < students.length; i++){
+            max = (students[i].getAverageScore() > max) ? students[i].getAverageScore() : max;
+        }
+        return max;
+    }
+
+    public static void findPoorRank(SinhVien2[] students){
+        for (int i = 0; i < students.length; i++){
+            if(students[i].getAverageScore() == 0){
+                System.out.println("Please press 2 to calculate average score first");
+                break;
+            } else {
+                if(students[i].getRank() == "Poor"){
+                    printLabel();
+                    System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
+                            students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
+                            students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
+                }
+            }
+        }
+    }
+
+    public static void findStudentByName(SinhVien2[] students, String name){
+        int count1 = 0;
+        for (int i = 0; i < students.length; i++){
+            if(students[i].getFullName().compareToIgnoreCase(name) == 0){
+                printLabel();
+                System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
+                        students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
+                        students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
+                count1++;
+            }
+        }
+        if(count1 == 0){
+            System.out.println("Cannot find input student");
+        }
+    }
+
+    public static void findStudentByCode(SinhVien2[] students, String code){
+        int count2 = 0;
+        for (int i = 0; i < students.length; i++){
+            if(students[i].getStudentCode().compareToIgnoreCase(code) == 0){
+                printLabel();
+                System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
+                        students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
+                        students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
+                count2++;
+            }
+        }
+        if(count2 == 0){
+            System.out.println("Cannot find input student");
+        }
+    }
+
+    public static void removeStudentInfo(SinhVien2[] students, String codeRemove, int n){
+        int tmp = 0;
+        for (int i = 0; i < students.length; i++) {
+            if(students[i].getStudentCode().compareToIgnoreCase(codeRemove) != 0){
+                students[tmp] = students[i];
+                tmp++;
+            }
+        }
+        n = tmp;
+        System.out.println("Data after removing data:");
+        printLabel();
+        for (int i = 0; i < n; i++) {
+            System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
+                    students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
+                    students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
+        }
+    }
+
+    public static void printLabel(){
+        System.out.printf("%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Full Name", "ID code",
+                "Math Score", "Physic Score", "Chemistry Score", "Average Score", "Rank");
+    }
+}
