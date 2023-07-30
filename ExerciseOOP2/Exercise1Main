@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class QuadraticEquationMain {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        QuadraticEquationClass equation1 = new QuadraticEquationClass();
+        fillInfo(equation1, input);
+        float delta = equation1.calculateDelta();
+        System.out.println("Delta = " + delta);
+        equation1.solveQuadraticEquation();
+    }
+
+    public static void fillInfo(QuadraticEquationClass equation1,  Scanner input){
+        System.out.println("Enter a:");
+        equation1.setA(input.nextFloat());
+        System.out.println("Enter b:");
+        equation1.setB(input.nextFloat());
+        System.out.println("Enter c:");
+        equation1.setC(input.nextFloat());
+    }
+}
