@@ -1,0 +1,56 @@
+public class QuadraticEquationClass {
+    private float a;
+    private float b;
+    private float c;
+
+    public QuadraticEquationClass(){
+
+    }
+
+    public QuadraticEquationClass(float a, float b, float c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public float getA() {
+        return a;
+    }
+
+    public void setA(float a) {
+        this.a = a;
+    }
+
+    public float getB() {
+        return b;
+    }
+
+    public void setB(float b) {
+        this.b = b;
+    }
+
+    public float getC() {
+        return c;
+    }
+
+    public void setC(float c) {
+        this.c = c;
+    }
+
+    public float calculateDelta(){
+        float delta;
+        delta = this.b * this.b - 4 * this.a * this.c;
+        return delta;
+    }
+
+    public void solveQuadraticEquation(){
+        float delta = calculateDelta();
+        if(delta < 0){
+            System.out.println("The equation has no solution!");
+        } else if (delta == 0) {
+            System.out.println("The equation has only one solution: " + (-b / (2 * a)));
+        } else {
+            System.out.println("The equation has 2 solutions: " + (-b + Math.sqrt(delta) / 2) + " and " + (-b - Math.sqrt(delta) / 2));
+        }
+    }
+}
