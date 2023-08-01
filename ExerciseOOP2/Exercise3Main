@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class AccountMain {
+    public static void main(String[] args) {
+        Account dung = new Account(10023023, "Dũng");
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println(">>>>>>>>>Bank Account Management Program<<<<<<<<<<<");
+            System.out.println("1. Check your balance");
+            System.out.println("2. Deposit cash into bank account");
+            System.out.println("3. Withdraw cash from bank account");
+            System.out.println("4. Check interest when the balance is expired");
+            System.out.println("0. Exit program");
+            choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    System.out.println(dung);
+                    break;
+                case 2:
+                    dung.depositCash();
+                    break;
+                case 3:
+                    dung.withdrawCash();
+                    break;
+                case 4:
+                    dung.expireAccount();
+                    break;
+                case 0:
+                    System.out.println("See you again");
+                    break;
+                default:
+                    System.out.println("Please enter suitable choice");
+                    break;
+            }
+        } while (choice != 0);
+    }
+}
