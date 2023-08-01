@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class Account {
+    Scanner input = new Scanner(System.in);
+
+    private long accountNumber;
+    private String accountName;
+
+    private double balance;
+    final float interestRate = 0.035f;
+
+    public Account() {
+    }
+
+    public Account(long accountNumber, String accountName) {
+        this.accountNumber = accountNumber;
+        this.accountName = accountName;
+        this.balance = 50;
+    }
+
+    public long getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(long accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void depositCash() {
+        System.out.println("Enter the amount you wanna deposit into bank account:");
+        double depositMoney = input.nextDouble();
+        balance += depositMoney;
+        System.out.println("Deposit cash successfully!");
+    }
+
+    public void withdrawCash() {
+        System.out.println("Enter the amount you wanna withdraw from your account:");
+        double withdrawMoney = input.nextDouble();
+        if (withdrawMoney > balance) {
+            System.out.println("Your balance is insufficient to withdraw that amount");
+        } else {
+            balance -= withdrawMoney;
+            System.out.println("Withdraw cash successfully!");
+        }
+    }
+
+    public void expireAccount() {
+        double interest = balance + balance * interestRate;
+        System.out.println("Interest you can receive is: " + interest);
+    }
+
+    public String toString(){
+        return accountName + " who has account number " + accountNumber + " possesses bank balance of USD " + balance;
+    }
+}
