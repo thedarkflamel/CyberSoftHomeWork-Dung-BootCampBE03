@@ -1,0 +1,61 @@
+public class Student {
+    private int studentCode;
+    private String fullName;
+    private float theoreticalScore;
+    private float practicalScore;
+
+    public Student() {
+        this.studentCode = 0;
+        this.fullName = "";
+        this.theoreticalScore = 0;
+        this.practicalScore = 0;
+    }
+
+    public Student(int studentCode, String fullName, float theoreticalScore, float practicalScore) {
+        this.studentCode = studentCode;
+        this.fullName = fullName;
+        this.theoreticalScore = theoreticalScore;
+        this.practicalScore = practicalScore;
+    }
+
+    public int getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(int studentCode) {
+        this.studentCode = studentCode;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public float getTheoreticalScore() {
+        return theoreticalScore;
+    }
+
+    public void setTheoreticalScore(float theoreticalScore) {
+        this.theoreticalScore = theoreticalScore;
+    }
+
+    public float getPracticalScore() {
+        return practicalScore;
+    }
+
+    public void setPracticalScore(float practicalScore) {
+        this.practicalScore = practicalScore;
+    }
+
+    public float calculateAverageScore() {
+        float averageScore = (theoreticalScore + practicalScore) / 2;
+        return averageScore;
+    }
+
+    public String toString(){
+        return fullName + " who has student code No. " + studentCode + " gets " + theoreticalScore + " in theory and " + practicalScore + " in practical exam";
+    }
+}
