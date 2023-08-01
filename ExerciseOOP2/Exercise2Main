@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class StudentMain {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Student mySelf = new Student(1, "Dung", 8.2f, 7.5f);
+        Student myCloseFriend = new Student(2, "Anh", 9.0f, 7.2f);
+        Student anotherFriend = new Student();
+        fillInfo(anotherFriend, input);
+        System.out.println("Average score of " + mySelf.getFullName() + " : " + mySelf.calculateAverageScore());
+        System.out.println("Average score of " + myCloseFriend.getFullName() + " : " + myCloseFriend.calculateAverageScore());
+        System.out.println("Average score of " + anotherFriend.getFullName() + " : " + anotherFriend.calculateAverageScore());
+        System.out.println(mySelf);
+        System.out.println(myCloseFriend);
+        System.out.println(anotherFriend);
+    }
+
+    public static void fillInfo(Student a, Scanner input){
+        System.out.println("Enter information here:");
+        System.out.println("Enter student's code:");
+        a.setStudentCode(input.nextInt());
+        System.out.println("Enter student's name:");
+        input.nextLine();
+        a.setFullName(input.nextLine());
+        System.out.println("Enter theoretical score of student:");
+        a.setTheoreticalScore(input.nextFloat());
+        System.out.println("Enter practical score of student:");
+        a.setPracticalScore(input.nextFloat());
+    }
+}
