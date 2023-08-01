@@ -3,7 +3,7 @@ public class QuadraticEquationClass {
     private float b;
     private float c;
 
-    public QuadraticEquationClass(){
+    public QuadraticEquationClass() {
 
     }
 
@@ -37,20 +37,26 @@ public class QuadraticEquationClass {
         this.c = c;
     }
 
-    public float calculateDelta(){
+    public float calculateDelta() {
         float delta;
         delta = this.b * this.b - 4 * this.a * this.c;
         return delta;
     }
 
-    public void solveQuadraticEquation(){
+    public void solveQuadraticEquation() {
         float delta = calculateDelta();
-        if(delta < 0){
+        if(a == 0 && b == 0){
             System.out.println("The equation has no solution!");
-        } else if (delta == 0) {
-            System.out.println("The equation has only one solution: " + (-b / (2 * a)));
+        } else if (a == 0 && b != 0) {
+            System.out.println("The equation has only one solution: " + (-c / b));
         } else {
-            System.out.println("The equation has 2 solutions: " + (-b + Math.sqrt(delta) / 2) + " and " + (-b - Math.sqrt(delta) / 2));
+            if (delta < 0) {
+                System.out.println("The equation has no solution!");
+            } else if (delta == 0) {
+                System.out.println("The equation has only one solution: " + (-b / (2 * a)));
+            } else {
+                System.out.println("The equation has 2 solutions: " + (-b + Math.sqrt(delta) / 2) + " and " + (-b - Math.sqrt(delta) / 2));
+            }
         }
     }
 }
