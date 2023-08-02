@@ -49,8 +49,7 @@ public class TestSinhVien2 {
                         float max = findHighestScoreStudent(students);
                         for (int i = 0; i < students.length; i++){
                             if(max == students[i].getAverageScore()){
-                                System.out.printf("%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Full Name", "ID code",
-                                        "Math Score", "Physic Score", "Chemistry Score", "Average Score", "Rank");
+                                printLabel();
                                 System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
                                         students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
                                         students[i].getChemistryScore(), students[i].getAverageScore(), students[i].getRank());
@@ -80,6 +79,12 @@ public class TestSinhVien2 {
                         input.nextLine();
                         codeRemove = input.nextLine();
                         removeStudentInfo(students, codeRemove, n);
+                        break;
+                    case 0:
+                        System.out.println("See you again!");
+                        break;
+                    default:
+                        System.out.println("Kindly enter option from 0 - 8");
                         break;
                 }
             } while (choice != 0);
@@ -130,7 +135,7 @@ public class TestSinhVien2 {
                 System.out.println("Please press 2 to calculate average score first");
                 break;
             } else {
-                if(students[i].getRank() == "Poor"){
+                if(students[i].getRank().compareToIgnoreCase("Poor") == 0){
                     printLabel();
                     System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", students[i].getFullName(),
                             students[i].getStudentCode(), students[i].getMathScore(), students[i].getPhysicScore(),
