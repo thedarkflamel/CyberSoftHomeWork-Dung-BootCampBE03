@@ -1,0 +1,102 @@
+package baitapvenha;
+
+public class SinhVien3 {
+    private String fullName;
+    private String studentCode;
+    private float mathScore;
+    private String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public float getAverageScore() {
+        return averageScore;
+    }
+
+    private float physicScore;
+
+    private float averageScore;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+
+    public float getMathScore() {
+        return mathScore;
+    }
+
+    public float getPhysicScore() {
+        return physicScore;
+    }
+
+    public float getChemistryScore() {
+        return chemistryScore;
+    }
+
+    private float chemistryScore;
+
+    public SinhVien3() {
+
+    }
+
+    public SinhVien3(String fullName, String studentCode, float mathScore, float physicScore, float chemistryScore) {
+        this.fullName = fullName;
+        this.studentCode = studentCode;
+        this.mathScore = mathScore;
+        this.physicScore = physicScore;
+        this.chemistryScore = chemistryScore;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setStudentCode(String studentCode) {
+        if(!studentCode.isEmpty()){
+            this.studentCode = studentCode;
+        }
+    }
+
+    public void setMathScore(float mathScore) {
+        if (mathScore >= 0) {
+            this.mathScore = mathScore;
+        }
+    }
+
+    public void setPhysicScore(float physicScore) {
+        if (physicScore >= 0) {
+            this.physicScore = physicScore;
+        }
+    }
+
+    public void setChemistryScore(float chemistryScore) {
+        if (chemistryScore >= 0) {
+            this.chemistryScore = chemistryScore;
+        }
+    }
+
+    public void calculateAverageScore() {
+        averageScore = (mathScore + physicScore + chemistryScore) / 3;
+    }
+
+    public void rankByAverageScore() {
+        if (averageScore >= 9 && averageScore <= 10) {
+            rank = "Excellent";
+        } else if (averageScore >= 8 && averageScore < 9) {
+            rank = "Good";
+        } else if (averageScore >= 7 && averageScore < 8) {
+            rank = "Average";
+        } else if (averageScore >= 6 && averageScore < 7) {
+            rank = "Fair";
+        } else if (averageScore >= 5 && averageScore < 6) {
+            rank = "Below fair";
+        } else if (averageScore >= 0 && averageScore < 5) {
+            rank = "Poor";
+        }
+    }
+}
