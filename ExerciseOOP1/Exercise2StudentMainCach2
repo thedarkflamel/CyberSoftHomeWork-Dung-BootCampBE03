@@ -1,0 +1,211 @@
+package baitapvenha;
+
+import javabc03.SinhVien;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SinhVien3Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        ArrayList<SinhVien3> listSinhVien = new ArrayList<>();
+        int choice;
+        do {
+            System.out.println(">>>>>>>>>>>Student Management Program<<<<<<<<<<<");
+            System.out.println("1. Add a student info into list");
+            System.out.println("1. Enter student info");
+            System.out.println("2. Calculate average score");
+            System.out.println("3. Ranking students");
+            System.out.println("4. Show student whose highest average score");
+            System.out.println("5. Show students whose poor rank");
+            System.out.println("6. Find students by name");
+            System.out.println("7. Find students by student code");
+            System.out.println("8. Remove students by student code");
+            System.out.println("0. Exit program");
+            choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    addStudent(listSinhVien, input);
+                    break;
+                case 2:
+                    for(int i = 0; i < listSinhVien.size(); i++){
+                        listSinhVien.get(i).calculateAverageScore();
+                    }
+                    System.out.println("Average Score has been calculated successfully. Please press 3 to classify rank!");
+                    break;
+                case 3:
+                    int count = 0;
+                    for (int i = 0; i < listSinhVien.size(); i++){
+                        if(listSinhVien.get(i).getAverageScore() == 0){
+                            System.out.println("Please press 2 to calculate average score first");
+                            count++;
+                            break;
+                        } else {
+                            listSinhVien.get(i).rankByAverageScore();
+                        }
+                    }
+                    if(count == 0){
+                        showInfo(listSinhVien);
+                    }
+                    break;
+                case 4:
+                    float max = findHighestScoreStudent(listSinhVien);
+                    for (SinhVien3 i : listSinhVien) {
+                        if(max == i.getAverageScore()){
+                            printLabel();
+                            System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", i.getFullName(),
+                                    i.getStudentCode(), i.getMathScore(), i.getPhysicScore(),
+                                    i.getChemistryScore(), i.getAverageScore(), i.getRank());
+                        }
+                    }
+                    break;
+                case 5:
+                    findPoorRank(listSinhVien);
+                    break;
+                case 6:
+                    String name;
+                    System.out.println("Enter student's name you wanna search:");
+                    input.nextLine();
+                    name = input.nextLine();
+                    findStudentByName(listSinhVien, name);
+                    break;
+                case 7:
+                    String code;
+                    System.out.println("Enter student's code you wanna search:");
+                    input.nextLine();
+                    code = input.nextLine();
+                    findStudentByCode(listSinhVien, code);
+                    break;
+                case 8:
+                    String codeRemove;
+                    System.out.println("Enter student's code you wanna remove:");
+                    input.nextLine();
+                    codeRemove = input.nextLine();
+                    boolean index = removeStudentInfo(listSinhVien, codeRemove);
+                    if (index){
+                        if(listSinhVien.size() == 0){
+                            System.out.println("Empty list!");
+                        } else {
+                            System.out.println("List student after being adjusted:");
+                            for (SinhVien3 i: listSinhVien) {
+                                printLabel();
+                                System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", i.getFullName(),
+                                        i.getStudentCode(), i.getMathScore(), i.getPhysicScore(),
+                                        i.getChemistryScore(), i.getAverageScore(), i.getRank());
+                            }
+                        }
+                    } else {
+                        System.out.println("Cannot find student code!");
+                    }
+                    break;
+                case 0:
+                    System.out.println("See you again!");
+                    break;
+                default:
+                    System.out.println("Kindly enter option from 0 - 8");
+                    break;
+            }
+        } while (choice != 0);
+    }
+
+    public static void addStudent(ArrayList <SinhVien3> listSinhVien, Scanner input){
+        SinhVien3 sinhVien = new SinhVien3();
+        System.out.println("Enter student name:");
+        input.nextLine();
+        sinhVien.setFullName(input.nextLine());
+        System.out.println("Enter student code:");
+        sinhVien.setStudentCode(input.nextLine());
+        System.out.println("Enter Math score:");
+        sinhVien.setMathScore(input.nextFloat());
+        System.out.println("Enter Physic score:");
+        sinhVien.setPhysicScore(input.nextFloat());
+        System.out.println("Enter Chemistry score:");
+        sinhVien.setChemistryScore(input.nextFloat());
+        listSinhVien.add(sinhVien);
+        System.out.println("Student has been added successfully!");
+    }
+
+    public static void showInfo(ArrayList <SinhVien3> listSinhVien){
+        printLabel();
+        for (int i = 0; i < listSinhVien.size(); i++){
+            System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", listSinhVien.get(i).getFullName(),
+                    listSinhVien.get(i).getStudentCode(), listSinhVien.get(i).getMathScore(), listSinhVien.get(i).getPhysicScore(),
+                    listSinhVien.get(i).getChemistryScore(), listSinhVien.get(i).getAverageScore(), listSinhVien.get(i).getRank());
+        }
+    }
+
+    public static void printLabel(){
+        System.out.printf("%-20s%-20s%-20s%-20s%-20s%-20s%-20s\n", "Full Name", "ID code",
+                "Math Score", "Physic Score", "Chemistry Score", "Average Score", "Rank");
+    }
+
+    public static float findHighestScoreStudent(ArrayList <SinhVien3> listSinhVien){
+        float max = 0;
+        for (int i = 0; i < listSinhVien.size(); i++){
+            max = (listSinhVien.get(i).getAverageScore() > max) ? listSinhVien.get(i).getAverageScore() : max;
+        }
+        return max;
+    }
+
+    public static void findPoorRank(ArrayList <SinhVien3> listSinhVien){
+        for (SinhVien3 i: listSinhVien) {
+            if(i.getAverageScore() == 0){
+                System.out.println("Please press 2 to calculate average score first");
+                break;
+            } else {
+                if(i.getRank().compareToIgnoreCase("Poor") == 0){
+                    printLabel();
+                    System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", i.getFullName(),
+                            i.getStudentCode(), i.getMathScore(), i.getPhysicScore(),
+                            i.getChemistryScore(), i.getAverageScore(), i.getRank());
+                }
+            }
+        }
+    }
+
+    public static void findStudentByName(ArrayList <SinhVien3> listSinhVien, String name){
+        int count = 0;
+        for (SinhVien3 i: listSinhVien) {
+            if(i.getFullName().compareToIgnoreCase(name) == 0){
+                printLabel();
+                System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", i.getFullName(),
+                        i.getStudentCode(), i.getMathScore(), i.getPhysicScore(),
+                        i.getChemistryScore(), i.getAverageScore(), i.getRank());
+                count++;
+            }
+        }
+        if(count == 0){
+            System.out.println("Cannot find input student");
+        }
+    }
+
+    public static void findStudentByCode(ArrayList <SinhVien3> listSinhVien, String code){
+        int count = 0;
+        for (SinhVien3 i: listSinhVien) {
+            if(i.getStudentCode().compareToIgnoreCase(code) == 0){
+                printLabel();
+                System.out.printf("%-20s%-20s%-18.2f%-18.2f%-18.2f%-18.2f%-20s\n", i.getFullName(),
+                        i.getStudentCode(), i.getMathScore(), i.getPhysicScore(),
+                        i.getChemistryScore(), i.getAverageScore(), i.getRank());
+                count++;
+            }
+        }
+        if(count == 0){
+            System.out.println("Cannot find input student");
+        }
+    }
+
+    public static boolean removeStudentInfo(ArrayList <SinhVien3> listSinhVien, String removeCode){
+        for (SinhVien3 i: listSinhVien) {
+            if(i.getStudentCode().compareToIgnoreCase(removeCode) == 0){
+                listSinhVien.remove(i);
+                return true;
+            }
+            if(listSinhVien.size() == 0){
+                break;
+            }
+        }
+        return false;
+
+    }
+}
