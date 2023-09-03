@@ -1,0 +1,38 @@
+.card{
+    display: flex;
+    border: 1.5px solid rgb(197, 186, 186);
+    gap: 30px;
+    width: 600px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    line-height: 1.6;
+}
+
+.icon-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    background-color: rgb(206, 219, 241);
+    border-radius: 30px;
+}
+
+.icon{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.style-text{
+    color: blue;
+    font-size: 21px;
+}
+
+.justify-2card{
+    display: flex;
+    justify-content: space-between;
+}
+
