@@ -1,0 +1,94 @@
+.menu{
+    display: flex;
+    background-image: url("/img/hero-bg.jpg");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.opacity{
+    position: absolute;
+    background-color: rgb(255, 255, 255, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.round-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(244, 239, 239);
+    border: 1px;
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.center-menu{
+    position: fixed;
+    left: 10px;
+    top: 100px;
+}
+
+.full-name{
+    margin-left: 150px;
+    z-index: 1;
+}
+
+.media-size{
+    font-size: 18pt;
+}
+
+.media-margin{
+    margin-left: 20px;
+}
+
+.description-margin{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.profile-pic-size{
+    object-fit: contain;
+    height: 300px;
+    width: 270px;
+}
+
+.title{
+    text-align: center;
+    margin-top: 50px;
+    color: gray;
+}
+
+.below-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007aff;
+    border: 1px;
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+}
+
+.font-icon-below{
+    font-size: 18pt;
+}
+
+.font-size-number{
+    font-size: 15pt;
+    padding-left: 10px;
+}
+
+.font-size-character{
+    font-size: 10pt;
+}
+
