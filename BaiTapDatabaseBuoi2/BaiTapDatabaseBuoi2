@@ -1,0 +1,197 @@
+CREATE DATABASE thuctap;
+USE thuctap;
+CREATE TABLE TBLkhoa(
+	makhoa char(10),
+	tenkhoa char(10),
+	dienthoai char(10),
+	primary key(makhoa)
+);
+
+CREATE TABLE TBLgiangvien(
+	magv int,
+	hotengv char(30),
+	luong decimal(5,2),
+	makhoa char(10),
+	primary key(magv)
+);
+
+CREATE TABLE TBLsinhvien(
+	masv int,
+	hotensv char(40),
+	makhoa char(10),
+	namsinh int,
+	quequan char(30),
+	primary key(masv)
+);
+
+CREATE TABLE TBLdetai(
+	madt char(10),
+	tendetai char(30),
+	kinhphi int,
+	noithuctap char(30),
+	primary key(madt)
+);
+
+CREATE TABLE TBLhuongdan(
+	masv int,
+	madt char(10),
+	magv int,
+	ketqua decimal(5,2),
+	primary key(masv)
+);
+
+INSERT INTO TBLkhoa VALUES
+('Geo','DialyQLTN',3855413),
+('Math','Toan',3855411),
+('Bio','Cong nghe',3855412);
+
+INSERT INTO TBLgiangvien VALUES
+(11,'Thanh Binh',700,'Geo'),    
+(12,'Thu Huong',500,'Math'),
+(13,'Chu Vinh',650,'Geo'),
+(14,'Le Thi Ly',500,'Bio'),
+(15,'Tran Son',900,'Math');
+
+INSERT INTO TBLsinhvien VALUES
+(1,'Le Van Son','Bio',1990,'Nghe An'),
+(2,'Nguyen Thi Mai','Geo',1990,'Thanh Hoa'),
+(3,'Bui Xuan Duc','Math',1992,'Ha Noi'),
+(4,'Nguyen Van Tung','Bio',null,'Ha Tinh'),
+(5,'Le Khanh Linh','Bio',1989,'Ha Nam'),
+(6,'Tran Khac Trong','Geo',1991,'Thanh Hoa'),
+(7,'Le Thi Van','Math',null,'null'),
+(8,'Hoang Van Duc','Bio',1992,'Nghe An');
+
+INSERT INTO TBLdetai VALUES
+('Dt01','GIS',100,'Nghe An'),
+('Dt02','ARC GIS',500,'Nam Dinh'),
+('Dt03','Spatial DB',100, 'Ha Tinh'),
+('Dt04','MAP',300,'Quang Binh' );
+
+INSERT INTO TBLhuongdan VALUES
+(1,'Dt01',13,8),
+(2,'Dt03',14,0),
+(3,'Dt03',12,10),
+(5,'Dt04',14,7),
+(6,'Dt01',13,Null),
+(7,'Dt04',11,10),
+(8,'Dt03',15,6);
+
+
+ALTER TABLE TBLgiangvien ADD CONSTRAINT FK_makhoa_TBLgiangvien FOREIGN KEY (makhoa) REFERENCES TBLkhoa(makhoa);
+
+ALTER TABLE TBLsinhvien ADD CONSTRAINT FK_makhoa_TBLsinhvien FOREIGN KEY (makhoa) REFERENCES TBLkhoa(makhoa);
+
+ALTER TABLE TBLhuongdan ADD CONSTRAINT FK_madt_TBLhuongdan FOREIGN KEY (madt) REFERENCES TBLdetai(madt);
+
+ALTER TABLE TBLhuongdan ADD CONSTRAINT FK_magv_TBLhuongdan FOREIGN KEY (magv) REFERENCES TBLgiangvien(magv);
+
+-- 1.	Đưa ra thông tin gồm mã số, họ tênvà tên khoa của tất cả các giảng viên
+
+SELECT magv, hotengv, tenkhoa FROM TBLgiangvien t JOIN TBLkhoa t2 ON t.makhoa = t2.tenkhoa;
+
+-- 2.	Đưa ra thông tin gồm mã số, họ tênvà tên khoa của các giảng viên của khoa ‘DIA LY va QLTN’
+
+SELECT magv, hotengv, tenkhoa FROM TBLgiangvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa
+WHERE tenkhoa = 'Dia ly va QLTN';
+
+-- 3.	Cho biết số sinh viên của khoa ‘CONG NGHE SINH HOC’
+
+SELECT COUNT(tenkhoa) FROM TBLsinhvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa 
+WHERE t2.tenkhoa ='CONG NGHE SINH HOC'; 
+
+-- 4.	Đưa ra danh sách gồm mã số, họ tênvà tuổi của các sinh viên khoa ‘TOAN’
+
+SELECT masv, hotensv, (YEAR(CURRENT_TIME()) - namsinh) AS tuoi FROM TBLsinhvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa 
+WHERE t2.tenkhoa ='TOAN';
+
+-- 5.	Cho biết số giảng viên của khoa ‘CONG NGHE SINH HOC’
+
+SELECT COUNT(magv) FROM TBLgiangvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa
+WHERE tenkhoa = 'CONG NGHE SINH HOC';
+
+-- 6.	Cho biết thông tin về sinh viên không tham gia thực tập
+
+SELECT COUNT(hotensv) FROM TBLsinhvien t JOIN TBLkhoa t2 ON NOT t.makhoa = t2.makhoa;
+
+-- 7.	Đưa ra mã khoa, tên khoa và số giảng viên của mỗi khoa
+
+SELECT t2.makhoa, t2.tenkhoa, COUNT(magv) AS soluonggiaovien FROM TBLgiangvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa
+GROUP BY t2.makhoa ;
+
+-- 8.	Cho biết số điện thoại của khoa mà sinh viên có tên ‘Le van son’ đang theo học
+
+SELECT t2.dienthoai  FROM TBLsinhvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa 
+WHERE t.hotensv  ='Le van son';
+
+-- II.
+
+
+-- 4.	Cho biết mã số, tên đề tài của đề tài có kinh phí cao nhất
+
+SELECT madt, tendetai 
+FROM TBLdetai t 
+ORDER BY kinhphi DESC 
+LIMIT 1;
+
+-- 1.	Cho biết mã số và tên của các đề tài do giảng viên ‘Tran son’ hướng dẫn
+
+SELECT t2.madt , t2.tendetai  
+FROM TBLhuongdan t JOIN TBLdetai t2 ON t.madt = t2.madt 
+JOIN TBLgiangvien t3 ON t.magv = t3.magv 
+WHERE t3.hotengv = 'Tran son';
+
+-- 2.	Cho biết tên đề tài không có sinh viên nào thực tập
+
+SELECT DISTINCT t2.tendetai 
+FROM TBLhuongdan t JOIN TBLdetai t2 ON t.madt = t2.madt 
+JOIN TBLsinhvien t3 ON NOT t.masv = t3.masv;
+
+-- 3.	Cho biết mã số, họ tên, tên khoa của các giảng viên hướng dẫn từ 3 sinh viên trở lên.
+
+SELECT t2.magv , t2.hotengv , t2.makhoa 
+FROM TBLhuongdan t JOIN TBLgiangvien t2 ON t.magv = t2.magv 
+JOIN TBLsinhvien t3 ON t.masv = t3.masv
+GROUP BY t2.magv 
+HAVING COUNT(t3.masv) >= 3;
+
+-- 5.	Cho biết mã số và tên các đề tài có nhiều hơn 2 sinh viên tham gia thực tập
+
+SELECT t.madt, t3.tendetai
+FROM TBLhuongdan t JOIN TBLsinhvien t2 ON t.masv = t2.masv 
+JOIN TBLdetai t3 ON t.madt = t3.madt 
+GROUP BY t.madt
+HAVING COUNT(t2.masv) > 2;
+
+-- 6.	Đưa ra mã số, họ tên và điểm của các sinh viên khoa ‘DIALY và QLTN’
+
+SELECT t.masv , t.hotensv , t3.ketqua 
+FROM TBLsinhvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa
+JOIN TBLhuongdan t3 ON t.masv = t3.masv 
+WHERE t2.tenkhoa = 'DialyQLTN';
+
+-- 7.	Đưa ra tên khoa, số lượng sinh viên của mỗi khoa
+
+SELECT t2.tenkhoa , COUNT(t.masv) AS soluongsinhvien
+FROM TBLsinhvien t JOIN TBLkhoa t2 ON t.makhoa = t2.makhoa
+GROUP BY t2.tenkhoa;
+
+-- 8.	Cho biết thông tin về các sinh viên thực tập tại quê nhà
+
+SELECT *
+FROM TBLhuongdan t JOIN TBLsinhvien t2 ON t.masv = t2.masv 
+JOIN TBLdetai t3 ON t.madt = t3.madt 
+WHERE t2.quequan = t3.noithuctap;
+
+-- 9.	Hãy cho biết thông tin về những sinh viên chưa có điểm thực tập
+
+SELECT *
+FROM TBLhuongdan t JOIN TBLsinhvien t2 ON t.masv = t2.masv 
+JOIN TBLdetai t3 ON t.madt = t3.madt 
+WHERE t3.noithuctap IS NULL;
+
+-- 10.	Đưa ra danh sách gồm mã số, họ tên các sinh viên có điểm thực tập bằng 0
+
+SELECT t2.masv, t2.hotensv 
+FROM TBLhuongdan t JOIN TBLsinhvien t2 ON t.masv = t2.masv 
+WHERE t.ketqua = 0;
